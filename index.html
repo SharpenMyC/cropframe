@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f6ef" />
+    <meta name="description" content="Prepare consistent, pixel-aligned image crops and export a reusable dataset entirely in your browser." />
+    <title>Cropframe — Image Dataset Prep</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Cropframe home">
+        <span class="brand-mark" aria-hidden="true">✳</span>
+        <span>crop<span class="brand-light">frame</span></span>
+      </a>
+      <span class="local-badge"><span></span> Files stay on this device</span>
+    </header>
+
+    <main class="page-shell">
+      <section class="intro">
+        <div class="eyebrow">A consistent view across every image</div>
+        <h1>Make image sets<br /><em>ready to analyze.</em></h1>
+        <p>Choose a series, set one crop on the reference image, and export a consistent dataset for your analysis.</p>
+      </section>
+
+      <section class="workspace" aria-label="Image crop workspace">
+        <aside class="controls">
+          <div class="step-heading"><span class="step-number">01</span><div><h2>Add your image series</h2><p>For best results, use images with matching dimensions.</p></div></div>
+          <label class="upload-box" id="drop-zone" for="file-input">
+            <span class="upload-icon" aria-hidden="true">↑</span>
+            <strong>Drop photos here</strong>
+            <span>or <u>browse files</u></span>
+            <small>JPG, PNG, WebP · images are not uploaded</small>
+          </label>
+          <input id="file-input" type="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" multiple hidden />
+
+          <div class="file-summary" id="file-summary" hidden>
+            <div class="summary-top"><span id="file-count">0 photos</span><button id="clear-files" class="text-button" type="button">Clear</button></div>
+            <div class="file-list" id="file-list"></div>
+            <p class="validation" id="validation-message" role="status"></p>
+          </div>
+
+          <div class="divider"></div>
+          <div class="step-heading step-two"><span class="step-number">02</span><div><h2>Set the crop</h2><p>Drag on the reference photo or enter pixels.</p></div></div>
+          <div class="crop-fields">
+            <label>X <input id="crop-x" type="number" min="0" value="0" disabled /></label>
+            <label>Y <input id="crop-y" type="number" min="0" value="0" disabled /></label>
+            <label>Width <input id="crop-width" type="number" min="1" value="0" disabled /></label>
+            <label>Height <input id="crop-height" type="number" min="1" value="0" disabled /></label>
+          </div>
+          <div class="dimension-note" id="dimension-note">Select photos to begin.</div>
+
+          <div class="export-card">
+            <div class="export-copy"><span class="export-icon" aria-hidden="true">↘</span><div><strong>Lossless PNG + manifest</strong><small>Uniform crops, ready for measurement</small></div></div>
+            <button id="export-button" class="export-button" type="button" disabled><span>Export dataset</span><span aria-hidden="true">→</span></button>
+            <div id="export-status" class="export-status" role="status"></div>
+          </div>
+        </aside>
+
+        <section class="preview-panel" aria-label="Crop preview">
+          <div class="preview-toolbar"><div><span class="step-number">PREVIEW</span><strong id="preview-title">Your reference image</strong></div><span class="canvas-hint">Drag to set crop</span></div>
+          <div class="canvas-wrap" id="canvas-wrap">
+            <canvas id="preview-canvas" width="1200" height="760" aria-label="Reference image. Drag to select crop area."></canvas>
+            <div class="empty-state" id="empty-state"><span class="leaf-illustration" aria-hidden="true">✣</span><strong>Your crop starts here</strong><span>Add an image series to see a preview.</span></div>
+          </div>
+          <div class="preview-footer"><span><i class="status-dot"></i><span id="preview-dimensions">Waiting for photos</span></span><span>Crop coordinates are in source pixels</span></div>
+        </section>
+      </section>
+
+      <section class="tips-row">
+        <div><span class="tip-number">A</span><p><strong>Keep framing consistent</strong><br />A fixed view makes images easier to compare.</p></div>
+        <div><span class="tip-number">B</span><p><strong>Crop the same area</strong><br />One crop is applied to every photo in the series.</p></div>
+        <div><span class="tip-number">C</span><p><strong>Keep your originals</strong><br />The export is new; source files are never altered.</p></div>
+      </section>
+      <footer>Built for consistent image workflows <span>·</span> Your files remain local</footer>
+    </main>
+  </body>
+</html>

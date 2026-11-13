@@ -1,0 +1,14 @@
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Editor and local environment settings
+.vscode/
+.idea/
+
+# Dataset exports and generated crops
+*.zip
+/crops/
+/manifest.csv
+/*-crops-*/
+/test-*.png
